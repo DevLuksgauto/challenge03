@@ -1,0 +1,98 @@
+.filterContainer{
+    width: 90vw;
+    height: 50vh;
+    z-index: 1;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content:center ;
+    align-items: center;
+    top: 110vw;
+    left: 1.2rem;
+    border: 2px solid #0acf83;
+    border-radius: 1.5rem 1.5rem 0 0;
+    background-color: #fff;
+    font-family: 'DM Sans';
+}
+.btnNoStyle {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+}
+.title{
+    letter-spacing: 0.2px;
+    line-height: 36px;
+    font-weight: 900;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 1rem;
+    width: 80vw;
+    display: flex;
+    justify-content: space-between;
+}
+.category{
+    position: relative;
+    top: -5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1rem;
+    width: 80vw;
+    height: auto;
+}
+.category :last-child{
+    width: 84vw;
+    margin-top: 0.3rem;
+}
+.category :last-child:hover{
+    width: 84vw;
+    margin-top: 0.3rem;
+    padding: 0.2rem -0.2rem 0.2rem 0.2rem;
+}
+.category p{
+    align-self: start;
+    font-size: 1rem;
+}
+.sortP{
+    position: absolute;
+    top: 11rem;
+    font-size: 1rem;
+    width: 80vw;
+}
+.sortByContainer{
+    width: 80vw;
+    position: absolute;
+    bottom: 7.5rem;
+}
+.SortBy{
+    border: 1px solid #7F7F7F;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    padding: 0.6rem 1rem 0.6rem 1rem;
+    margin: 0rem 0.5rem 0.5rem 0rem;
+}
+.SortBy:hover{
+    border: 1px solid #0acf83;
+    background-color: #0acf83;
+    color: #fff;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    padding: 0.6rem 1rem 0.6rem 1rem;
+    margin: 0rem 0.5rem 0.5rem 0rem;
+}
+.btnApplyFilter{
+    width: 80vw;
+    padding: 1rem;
+    border: 1px solid #0acf83;
+    border-radius: 0.5rem;
+    background-color: #0acf83;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'DM Sans';
+    position: absolute;
+    bottom: 2rem;
+}

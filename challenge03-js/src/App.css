@@ -1,0 +1,8 @@
+@media only screen and (min-width: 320px) and (max-width: 480px) and (min-height: 568px) { */
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'DM Sans', sans-serif;
+    }
+}

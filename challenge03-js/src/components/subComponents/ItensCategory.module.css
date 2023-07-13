@@ -1,0 +1,24 @@
+.btnList{
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    width: 90vw;
+    margin-left: 1rem;
+}
+.btnProduct{
+    background: none;
+    border: none;
+    padding: 0.3rem 1rem 0.3rem 1rem;
+    margin: 0;
+    cursor: pointer;
+    color: #7F7F7F;
+}
+.btnProduct:hover{
+    background-color: #0acf83;
+    border-radius: 1.5rem;
+    border: none;
+    color: #fff;
+    padding: 0.3rem 1rem 0.3rem 1rem;
+    font-size: 0.87rem;
+    box-shadow: 3px 2px 4px rgba(0, 0, 0, 0.2);
+}

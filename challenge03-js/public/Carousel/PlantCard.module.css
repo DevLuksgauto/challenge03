@@ -1,0 +1,58 @@
+.container{
+    max-width: 24.5rem;
+    height: 36.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content:left;
+    box-shadow: 0px 6.47552px 6px rgba(41, 41, 41, 0.08);
+    font-family: Lato;
+}
+
+.name{
+    color: #354633;
+    max-width: 15rem;
+    margin: 1.5rem 0 0.1rem 2rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: left;
+}
+
+.price{
+    color: #354633;
+    max-width: 15rem;
+    margin: 0.5rem 0 0 2rem;
+    font-size: 1rem;
+    font-family: Raleway;
+    text-align: left;
+}
+
+.label{
+    margin: 1.5rem 0 1.6rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0.15rem solid #8A9B6E;
+    border-radius: 1.25rem;
+    padding: 0.404rem 0.813rem;
+    background-color: #e5ebd7;
+    color: #8A9B6E;
+    font-family: Raleway;
+    font-weight: 900;
+}
+
+.link{
+    text-decoration: none;
+    color: inherit;
+}
+
+.pricesSale{
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
+    gap: 1rem;
+    /* background-color: red; */
+}
+
+.priceDiscarded{
+    text-decoration: line-through;
+}

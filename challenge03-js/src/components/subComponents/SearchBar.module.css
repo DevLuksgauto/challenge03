@@ -1,0 +1,27 @@
+.searchHeadphone{
+    position: relative;
+    color: rgba(186, 186, 186, 1);
+    display: flex;
+    justify-content: center;
+}
+.input{
+    margin-top: 1rem;
+    width: 92vw;
+    height: 2.813rem;
+    border-radius: 0.62rem;
+    border: 1px solid rgba(186, 186, 186, 1);
+    padding-left: 3rem;
+}
+.input::placeholder{
+    color: rgba(186, 186, 186, 1);
+    position: absolute;
+    left: 3rem;
+    font-size: 0.9rem;
+}
+.icon{
+    color: rgba(186, 186, 186, 1);
+    position: absolute;
+    top: 60%;
+    left: 2rem;
+    transform: translateY(-50%);
+}
