@@ -3,9 +3,9 @@ import { AlignLeft } from 'react-feather';
 import axios from "axios";
 
 import CarouselProducts from './subComponents/CarouselProducts';
-import CarouselFeaturedProducts from './subComponents/CarouselFeaturedProducts';
 import SearchBar from "./subComponents/SearchBar";
 import ItensCategory from "./subComponents/ItensCategory";
+import CarouselFeaturedProducts from "./subComponents/CarouselFeaturedProducts";
 
 import classes from './FirstPage.module.css'
 import greenIcon from '../assets/greenIcon.png'
@@ -14,7 +14,7 @@ const FirstPage = () => {
     const [ productsData, setProductsData ] = useState([]);
 
     useEffect(() => {
-        axios.get("https://run.mocky.io/v3/67f95bf8-97fd-43b9-951b-c8bccd8eb5a7")
+        axios.get("https://run.mocky.io/v3/15d284a1-db22-4fa9-970b-a6ba468b93d6")
             .then(res => setProductsData(res.data))
     },[])
 

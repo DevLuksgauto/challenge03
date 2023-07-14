@@ -1,21 +1,26 @@
 import { useState, useEffect, Fragment, useRef } from "react";
-import axios from  'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchData } from '../../actions/actions';
 import { motion } from 'framer-motion';
-import CarouselFPCard from "./CarouselFPCard";
-import classes from './CarouselFeaturedProducts.module.css'
+import CarouselFPCard from "../subComponents/CarouselFPCard";
+import classes from '../subComponents/CarouselFeaturedProducts.module.css';
 
 const CarouselFeaturedProducts = () => {
-    const array = [1, 2, 3];
-    const [ productsData, setProductsData ] = useState([]);
+    const dispatch = useDispatch();
+    const data = useSelector((state) => state.data);
     const carousel = useRef();
     const [width, setWidth] = useState(0);
 
     useEffect(() => {
-        axios.get("https://run.mocky.io/v3/15d284a1-db22-4fa9-970b-a6ba468b93d6")
-            .then(res => setProductsData(res.data))
-            setWidth(carousel.current?.scrollWidth - carousel.current?.offsetWidth)
-    },[])
+        const fetchDataAndSetWidth = async () => {
+        const fetchedData = await dispatch(fetchData());
+        setWidth(carousel.current?.scrollWidth - carousel.current?.offsetWidth);
+    };
+    
+        fetchDataAndSetWidth();
+    }, [dispatch]);
 
+    data.map(card=>console.log(card.id))
     return (
         <Fragment>
             <motion.div ref={carousel} className={classes.carousel} >
@@ -24,12 +29,11 @@ const CarouselFeaturedProducts = () => {
                 dragConstraints={{ right: 0, left: -width}}
                 >
 
-                    {array.map(card => (
+                    {data.map(card => (
                         <motion.div className={classes.card} key={Math.random(card)}>
                             <CarouselFPCard
-                                num={card}
-                                name={productsData.length > 0 ? productsData[card].name : "Product"}
-                                price={productsData.length > 0 ? productsData[card].price : "Price"}
+                                name={ data[card.id].name}
+                                price={data[card.id].price}
                                 />
                         </motion.div>
                     ))}
@@ -37,7 +41,7 @@ const CarouselFeaturedProducts = () => {
                 </motion.div>
             </motion.div>
         </Fragment>
-    )
+    );
 };
 
 export default CarouselFeaturedProducts;
