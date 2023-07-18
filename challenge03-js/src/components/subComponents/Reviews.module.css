@@ -1,0 +1,17 @@
+.container{
+    width: 90vw;
+    margin: auto;
+    display: flex;
+    gap: 1rem;
+}
+.userPic{
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+}
+.reviewDataContainer :first-child{
+    margin-bottom: 0.5rem;
+}
+.reviewDataContainer :nth-child(2){
+    margin-bottom: 0.5rem;
+}

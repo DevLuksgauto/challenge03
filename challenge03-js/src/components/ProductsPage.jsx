@@ -1,40 +1,44 @@
-import { ChevronLeft, ShoppingCart, Sliders } from 'react-feather'
-import FilterPopUp from './subComponents/FilterPopUp';
-import CarouselFPCard from './subComponents/CarouselFPCard'
+import { useState, useEffect, Fragment } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchData } from '../actions/FetchAction';
+import { useNavigate } from 'react-router-dom';
+import FilterButton from './subComponents/FilterButton'
+import CarouselFPCard from './subComponents/CarouselFPCard';
+import Loading from './subComponents/Loading';
 import classes from './ProductsPage.module.css';
-import { useState } from 'react';
+import HeaderWithoutTitle from './subComponents/HeaderWithoutTitle';
 
 const ProductsPage = (props) => {
-    const array = [1,2,3,4,5]
-    const [ filterPopUp, setFilterPopUp ] = useState(false);
+    const dispatch = useDispatch();
+    const data = useSelector((state) => state.data);
 
-    const filterHandler = () => {
-        if (filterPopUp === false){
-            setFilterPopUp(true);
-        } else {
-            setFilterPopUp(false)
-        }
-    }
-    
+    useEffect(() => {
+        const fetchDataAndSetWidth = async () => {
+        const fetchedData = await dispatch(fetchData());
+        };    
+        fetchDataAndSetWidth();
+    }, [dispatch]);
+
     return(
-        <div>
-            <header className={classes.header}>
-                <button className={classes.btnNoStyle}><ChevronLeft/></button>
-                <button className={classes.btnNoStyle}><ShoppingCart/></button>
-            </header>
-            <p className={classes.title}>HeadPhone</p>
-            <p className={classes.subTitle}>TMA Wireless</p>
-            <button onClick={filterHandler} className={classes.btnFilter}><Sliders size={17}/>Filter</button>
-            {filterPopUp ? <FilterPopUp/> : <p></p>}
-            
-            <div className={classes.ProductsContainer}>
-                {array.map(item => (
-                    <div className={classes.productsFilter} key={item}>
-                        <CarouselFPCard />
-                    </div>
-                ))}
-            </div>
-        </div>
+        <Fragment>
+            {data.length > 0 ? 
+            <div>
+                <HeaderWithoutTitle/>
+                <p className={classes.title}>Featured products</p>
+                <p className={classes.subTitle}>See all products</p>
+                <FilterButton/>
+                <div className={classes.ProductsContainer}>
+                    {data.map(item => (
+                        <div className={classes.productsFilter} key={item.id}>
+                            <CarouselFPCard
+                            name={data[item.id].name}
+                            price={data[item.id].price}
+                            />
+                        </div>
+                    ))}
+                </div>
+            </div> : <Loading/>}
+        </Fragment>
     )
 };
 

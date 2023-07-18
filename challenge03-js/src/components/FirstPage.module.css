@@ -40,6 +40,10 @@
     margin-left: 1.5rem;
     line-height: 1.25rem;
 }
+.link{
+    text-decoration: none;
+    color: #7F7F7F;
+}
 .FPContainer p{
     color:#7F7F7F
 }
