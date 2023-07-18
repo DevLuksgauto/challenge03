@@ -1,14 +1,15 @@
-import { Fragment } from 'react';
 import WebFont from 'webfontloader';
 import './App.css';
 
-import FirstPage from './components/FirstPage.jsx';
+import routes from './routes/routes'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
+import FirstPage from './components/FirstPage.jsx';
 import LogInPage from './components/LogInPage.jsx';
 import SearchPage from './components/SearchPage';
-import ProductsPage from './components/ProductsPage'
-import CarouselFeaturedProducts from './components/subComponents/CarouselFeaturedProducts'
+import ProductsPage from './components/ProductsPage';
+import ItemPage from './components/ItemPage';
+import NotFound from './components/NotFound';
 
 function App() {
   WebFont.load({
@@ -23,9 +24,22 @@ function App() {
           <Route  path='/home' element={<FirstPage />}/>
           <Route  path='/search' element={<SearchPage />}/>
           <Route  path='/products' element={<ProductsPage />}/>
-          <Route  path='/teste' element={<CarouselFeaturedProducts />}/>
+          <Route  path='/teste' element={<ItemPage />}/>
+          <Route  path='*' element={<NotFound />}/>
       </Routes>
     </Router>
+    // <Router>
+    //   <Routes>
+    //     {routes.map((route) => {
+    //       <Route
+    //         key={route.path}
+    //         exact={route.exact}
+    //         path={route.path}
+    //         element={route.element}
+    //       />
+    //     })}
+    //   </Routes>
+    // </Router>
   )
 };
 

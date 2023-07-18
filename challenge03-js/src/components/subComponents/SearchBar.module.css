@@ -9,7 +9,7 @@
     width: 92vw;
     height: 2.813rem;
     border-radius: 0.62rem;
-    border: 1px solid rgba(186, 186, 186, 1);
+    border: 0.1rem solid rgba(186, 186, 186, 1);
     padding-left: 3rem;
 }
 .input::placeholder{

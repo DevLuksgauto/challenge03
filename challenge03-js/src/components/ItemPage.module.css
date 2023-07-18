@@ -1,0 +1,64 @@
+.tudo{
+    width: 100vw;
+    height: 100vh;
+}
+.price{
+    margin: 2rem 0 0 1.5rem;
+    color: #0ACF83;
+    font-weight: 900;
+}
+.productName{
+    margin: 0 0 1rem 1.5rem;
+    font-weight: 900;
+}
+.review{
+    margin: 1rem 0 2rem 1.5rem;
+}
+.btn{
+    background: none;
+    border: none;
+    font-size: 1rem;
+    padding: 0;
+    margin: 0 1rem 2rem 1.5rem;
+    cursor: pointer;
+}
+.btn:hover{
+    border-bottom: 3px solid #0ACF83;
+    margin: 0 1rem 1.8rem 1.5rem;
+}
+.anotherProductsCarousel{
+    background-color: #F6F6F6;
+    margin-top: 3rem;
+    height: 35vh;
+}
+.anotherProductsContainer{
+    padding-top: 1rem;
+    margin-top: 5rem;
+    width: 88vw;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+}
+.link{
+    text-decoration: none;
+    color: #7F7F7F;
+}
+.anotherProducts{
+    font-weight: 500;
+}
+.link2{
+    text-decoration: none;
+    color: #fff;
+}
+.addToCartBtn{
+    margin: 2rem 0 1rem 1.5rem;
+    width: 90vw;
+    height: 3.12rem;
+    border: 1px solid #0ACF83;
+    border-radius: 0.62rem;
+    background-color: #0acf83;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: 'DM Sans';
+}
