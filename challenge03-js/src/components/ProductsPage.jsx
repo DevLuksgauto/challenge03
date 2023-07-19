@@ -33,6 +33,7 @@ const ProductsPage = (props) => {
                             <CarouselFPCard
                             name={data[item.id].name}
                             price={data[item.id].price}
+                            id={data[item.id].id}
                             />
                         </div>
                     ))}

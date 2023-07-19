@@ -1,7 +1,7 @@
-.tudo{
+/* .tudo{
     width: 100vw;
     height: 100vh;
-}
+} */
 .price{
     margin: 2rem 0 0 1.5rem;
     color: #0ACF83;
@@ -10,6 +10,7 @@
 .productName{
     margin: 0 0 1rem 1.5rem;
     font-weight: 900;
+    max-width: 85vw;
 }
 .review{
     margin: 1rem 0 2rem 1.5rem;

@@ -30,8 +30,9 @@ const CarouselFeaturedProducts = () => {
                     {data.map(card => (
                         <motion.div className={classes.card} key={Math.random(card)}>
                             <CarouselFPCard
-                                name={ data[card.id].name}
+                                name={data[card.id].name}
                                 price={data[card.id].price}
+                                id={data[card.id].id}
                                 />
                         </motion.div>
                     ))}

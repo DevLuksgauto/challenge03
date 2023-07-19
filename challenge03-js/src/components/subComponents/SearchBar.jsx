@@ -29,7 +29,7 @@ const SearchBar = () => {
         if (e.key === 'Enter') {
             for (let i = 0; i < data.length; i++){
                 if (data[i].name.toUpperCase() === searchQuery.toUpperCase()){
-                    setpageID(`/id${data[i].id}`);
+                    setpageID(`/${data[i].id}`);
                     navigate(pageID);
                 }
             }
