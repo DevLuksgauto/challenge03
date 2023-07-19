@@ -18,7 +18,7 @@ const ItemPicCarousel = () => {
             <motion.div ref={carousel} className={classes.carousel}>
                 <motion.div className={classes.inner}
                 drag="x"
-                dragConstraints={{ right: 0, left: -width}}
+                dragConstraints={{ right: 0, left: -260}}
                 >
 
                     {pictures.map(pic => (

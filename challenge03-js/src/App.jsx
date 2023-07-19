@@ -1,7 +1,7 @@
 import WebFont from 'webfontloader';
 import './App.css';
 
-import routes from './routes/routes'
+// import routes from './routes/routes'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import FirstPage from './components/FirstPage.jsx';
@@ -10,6 +10,7 @@ import SearchPage from './components/SearchPage';
 import ProductsPage from './components/ProductsPage';
 import ItemPage from './components/ItemPage';
 import NotFound from './components/NotFound';
+import ShoppingCartPage from './components/ShoppingCartPage';
 
 function App() {
   WebFont.load({
@@ -22,24 +23,14 @@ function App() {
       <Routes>
           <Route  path='/' element={<LogInPage />}/>
           <Route  path='/home' element={<FirstPage />}/>
+          <Route  path='/:id' element={<ItemPage />}/>
           <Route  path='/search' element={<SearchPage />}/>
           <Route  path='/products' element={<ProductsPage />}/>
-          <Route  path='/teste' element={<ItemPage />}/>
+          <Route  path='/products/:id' element={<ItemPage />}/>
+          <Route  path='/shoppingcart' element={<ShoppingCartPage />}/>
           <Route  path='*' element={<NotFound />}/>
       </Routes>
     </Router>
-    // <Router>
-    //   <Routes>
-    //     {routes.map((route) => {
-    //       <Route
-    //         key={route.path}
-    //         exact={route.exact}
-    //         path={route.path}
-    //         element={route.element}
-    //       />
-    //     })}
-    //   </Routes>
-    // </Router>
   )
 };
 

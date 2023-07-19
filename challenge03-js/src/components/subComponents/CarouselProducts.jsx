@@ -30,7 +30,10 @@ const CarouselProducts = () => {
 
                     {data.map(card => (
                         <motion.div className={classes.card} key={Math.random(card)}>
-                            <CarouselCard name={data[card.id].name}/>
+                            <CarouselCard
+                                name={data[card.id].name}
+                                id={data[card.id].id}
+                                />
                         </motion.div>
                     ))}
 
