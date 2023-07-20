@@ -1,7 +1,8 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useState, useEffect, Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchData } from '../actions/fetchAction';
+import { fetchData } from '../actions/FetchAction';
+import { addToCartBag } from '../actions/cartBagAction';
 
 import classes from './ItemPage.module.css';
 import HeaderWithoutTitle from './subComponents/HeaderWithoutTitle';
@@ -14,27 +15,32 @@ import ItemPicCarousel from './subComponents/ItemPicCarousel';
 const ItemPage = () => {
     const navigate  = useNavigate();
     const { id } = useParams();
+    const dispatch = useDispatch();
+    const data = useSelector((state) => state.reducer.data);
+    const cartBag = useSelector((state) => state.cart.cartBag);
+    const [ showFeatures, setShowFeatures ] = useState(false);
+    
+    useEffect(() => {
+        const fetchDataAndSetWidth = async () => {
+            const fetchedData = await dispatch(fetchData());
+        };    
+        fetchDataAndSetWidth();
+    }, [dispatch]);
+    
     const handleBack = () => {
         navigate(-1);
     };
 
-    const dispatch = useDispatch();
-    const data = useSelector((state) => state.data);
-    useEffect(() => {
-        const fetchDataAndSetWidth = async () => {
-        const fetchedData = await dispatch(fetchData());
-        };    
-        fetchDataAndSetWidth();
-    }, [dispatch]);
+    const handleAddToCart = () => {
+        dispatch(addToCartBag(data[id]));
+    }
 
-    const [ showFeatures, setShowFeatures ] = useState(false);
     const featuresHandle = () => {
             setShowFeatures(true);
         }
     const overviewHandle = () => {
             setShowFeatures(false)
         }
-
         const scrollToTop = () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         };
@@ -76,7 +82,7 @@ const ItemPage = () => {
                             <CarouselFeaturedProducts/>
                     </div>
                 </div>}
-                <button className={classes.addToCartBtn}><Link className={classes.link2}>Add to Cart</Link></button>
+                <button onClick={()=>handleAddToCart(data[id])} className={classes.addToCartBtn}><Link className={classes.link2}>Add to Cart</Link></button>
             </div>
             :
             <Loading/>}

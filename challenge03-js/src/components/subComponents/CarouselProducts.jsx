@@ -8,7 +8,7 @@ import classes from './CarouselProducts.module.css'
 const CarouselProducts = () => {
 
     const dispatch = useDispatch();
-    const data = useSelector((state) => state.data);
+    const data = useSelector((state) => state.reducer.data);
     const carousel = useRef();
     const [width, setWidth] = useState(0);
 

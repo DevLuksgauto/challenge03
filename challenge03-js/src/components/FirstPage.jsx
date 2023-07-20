@@ -21,7 +21,7 @@ const FirstPage = () => {
     }
 
     const dispatch = useDispatch();
-    const data = useSelector((state) => state.data);
+    const data = useSelector((state) => state.reducer.data);
     useEffect(() => {
         const fetchDataAndSetWidth = async () => {
         const fetchedData = await dispatch(fetchData());

@@ -1,7 +1,6 @@
 import WebFont from 'webfontloader';
 import './App.css';
 
-// import routes from './routes/routes'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import FirstPage from './components/FirstPage.jsx';
