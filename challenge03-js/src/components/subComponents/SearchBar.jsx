@@ -9,7 +9,7 @@ import classes from './SearchBar.module.css';
 
 const SearchBar = () => {
     const dispatch = useDispatch();
-    const data = useSelector((state) => state.data);
+    const data = useSelector((state) => state.reducer.data);
     const [ searchQuery, setSearchQuery ] = useState('');
     const [ pageID, setpageID ] = useState('');
     const navigate = useNavigate();

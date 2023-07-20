@@ -1,7 +1,7 @@
 import { useEffect, Fragment } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { fetchData } from '../actions/fetchAction';
+import { fetchData } from '../actions/FetchAction';
 import SearchBar from "./subComponents/SearchBar";
 import Loading from './subComponents/Loading'
 
@@ -17,7 +17,7 @@ const SearchPage = () => {
     }
 
     const dispatch = useDispatch();
-    const data = useSelector((state) => state.data);
+    const data = useSelector((state) => state.reducer.data);
     useEffect(() => {
         const fetchDataAndSetWidth = async () => {
         const fetchedData = await dispatch(fetchData());

@@ -1,8 +1,9 @@
-import { useState, useEffect, Fragment } from 'react';
+import { useEffect, Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { addToCartBag } from '../actions/cartBagAction';
 import { fetchData } from '../actions/FetchAction';
-import { useNavigate } from 'react-router-dom';
-import FilterButton from './subComponents/FilterButton'
+
+import FilterButton from './subComponents/FilterButton';
 import CarouselFPCard from './subComponents/CarouselFPCard';
 import Loading from './subComponents/Loading';
 import classes from './ProductsPage.module.css';
@@ -10,7 +11,8 @@ import HeaderWithoutTitle from './subComponents/HeaderWithoutTitle';
 
 const ProductsPage = (props) => {
     const dispatch = useDispatch();
-    const data = useSelector((state) => state.data);
+    const data = useSelector((state) => state.reducer.data);
+
 
     useEffect(() => {
         const fetchDataAndSetWidth = async () => {

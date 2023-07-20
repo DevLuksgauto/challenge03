@@ -9,11 +9,14 @@ const HeaderWithoutTitle = () => {
     const handleBack = () => {
         navigate(-1)
     }
+    const handleShoppingCart = () => {
+        navigate('/shoppingcart')
+    }
     return(
         <Fragment>
             <header className={classes.header}>
                 <button onClick={handleBack} className={classes.btnNoStyle}><ChevronLeft/></button>
-                <button className={classes.btnNoStyle}><ShoppingCart/></button>
+                <button onClick={handleShoppingCart} className={classes.btnNoStyle}><ShoppingCart/></button>
             </header>
         </Fragment>
     )
