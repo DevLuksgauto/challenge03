@@ -1,0 +1,43 @@
+.searchHeadphone{
+    position: relative;
+    color: rgba(186, 186, 186, 1);
+    display: flex;
+    justify-content: center;
+}
+.input{
+    margin-top: 1rem;
+    width: 92vw;
+    height: 2.813rem;
+    border-radius: 0.62rem;
+    border: 0.1rem solid rgba(186, 186, 186, 1);
+    padding-left: 3rem;
+}
+.input::placeholder{
+    color: rgba(186, 186, 186, 1);
+    position: absolute;
+    left: 3rem;
+    font-size: 0.9rem;
+}
+.icon{
+    color: rgba(186, 186, 186, 1);
+    position: absolute;
+    top: 60%;
+    left: 2rem;
+    transform: translateY(-50%);
+}
+.suggestions{
+    color: rgb(107, 106, 106);
+    position: absolute;
+    top: 3.7rem;
+    width: 90vw;
+    height: 10rem;
+    z-index: 1;
+    border: 1px solid rgba(186, 186, 186, 1);;
+    border-radius: 0 0 1rem 1rem;
+    overflow: scroll;
+    background-color: #fff;
+}
+.suggestions li{
+    text-decoration: none;
+    margin: 0.6rem;
+}

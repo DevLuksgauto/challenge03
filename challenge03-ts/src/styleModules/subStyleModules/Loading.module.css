@@ -1,0 +1,61 @@
+.container{
+    width: 100vw;
+    height: 100vh;
+
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background: linear-gradient(45deg, #ff8a00, #e52e71, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: animatedGradient 10s ease infinite;
+}
+.h1{
+  font-size: 3rem;
+  color: white
+}
+.h2{
+  font-size: 2rem;
+  color: white
+}
+
+@keyframes animatedGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.loader {
+    width: 80vw;
+    height: 40vh;
+    background-image: url('../../assets/cat-typing-24.gif');
+    background-repeat: no-repeat;
+    border-radius: 5rem;
+    background-size:cover;
+    background-position-x: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* animation: spin 2s infinite linear; */
+  }
+  
+  /* @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  } */

@@ -9,8 +9,6 @@ import classes from './FilterButton.module.css';
 const FilterButton = () => {
   const [open, setOpen] = useState(false);
   const handleOpenBottomSheet = () => {
-    console.log(open)
-    console.log("clicado")
     !open ? setOpen(true) : setOpen(false)
   };
 

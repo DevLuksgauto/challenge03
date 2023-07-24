@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { auth } from '../services/firebaseConfig';
 import { Link, useNavigate  } from 'react-router-dom';
@@ -20,11 +20,11 @@ const LogInPage = () => {
             const SigInHandler = (e) => {
                 e.preventDefault();
                 signInWithEmailAndPassword(email, password);
+                console.log(user)
             }
             
         const navigateToHome = () => {
             if (user) {
-                console.log(user, 'usuario logado');
                 navigate('/home');
             }
         };
@@ -68,7 +68,6 @@ const LogInPage = () => {
             :
             <SignUp
                 link={loginHandler}
-                returnLogin={setShowSignUp}
             />
             } 
         </div>
