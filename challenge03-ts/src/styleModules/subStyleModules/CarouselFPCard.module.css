@@ -1,0 +1,23 @@
+.card{
+    background-color: #fff;
+    border-radius: 1.5rem;
+    width: 41vw;
+    height: 26vh;
+    display: flex;
+    flex-direction: column;
+}
+.img{
+    align-self: center;
+    margin: 1rem 0 1.5rem 0;
+    width: 7rem;
+    height: 7rem;
+}
+.productName{
+    font-size: 0.875rem;
+    margin: 0 0 0.2rem 0.5rem;
+}
+.price{
+    font-size: 0.800rem;
+    font-weight: 600;
+    margin-left: 0.5rem;
+}

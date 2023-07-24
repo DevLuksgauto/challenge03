@@ -29,7 +29,10 @@ const ShoppingCartPage = () => {
     const handleDecreaseItem = (item) => {
         dispatch(decreaseCartItemQuantity(item));
     }
-  
+    const noRepeteArray = (array) => {
+        return array.filter((item, index) => array.indexOf(item) === index);
+    }
+    const cartItems = noRepeteArray(cartBag)
     return (
         <div className={classes.tudo}>
             <header className={classes.header}>
@@ -44,17 +47,19 @@ const ShoppingCartPage = () => {
                 : <p></p>}
             <div className={classes.pageContainer}>
                 <div className={classes.cartContainer}>
-                    {cartBag.map((item)=>(
+                    {cartItems.map((item)=>(
                         <ItemCartCard
+                            key={Math.random(item)}
                             name={item.name}
                             price={item.price}
+                            deleteItem={deleteBtnHandler}
                         />
                     ))
                     }
                 </div>
             </div>
             <div className={classes.totalPriceContainer}>
-                <p>Total {cartBag.length} items</p>
+                <p>Total {cartItems.length} items</p>
                 <p className={classes.totalPrice}>USD {totalPrice}</p>
             </div>
                 <button className={classes.checkoutBtn}>Proceed to Checkout<ChevronRight size={25}/></button>

@@ -1,0 +1,49 @@
+.header{
+    margin: 3rem 1.5rem 0 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    font-size: 1.3rem;
+}
+.btnNoStyle {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+}
+.title{
+    margin-left: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.salute{
+    margin: 2rem 0 0.5rem 1.5rem;
+}
+.carousselContainer{
+    margin: 2rem 0 0 0;
+    position: absolute;
+    width: 100vw;
+    height: 70vh;
+    background-color: #F6F6F6;
+    border-radius: 2rem 2rem 0 0 ;
+}
+
+.FPContainer{
+    width: 90vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.FeaturedProducts{
+    font-size: 1rem;
+    margin-left: 1.5rem;
+    line-height: 1.25rem;
+}
+.link{
+    text-decoration: none;
+    color: #7F7F7F;
+}
+.FPContainer p{
+    color:#7F7F7F
+}

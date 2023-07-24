@@ -45,6 +45,7 @@ const ItemPage = () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         };
 
+
     return(
         <Fragment>
             {data.length ? 

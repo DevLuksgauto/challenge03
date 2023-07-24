@@ -10,6 +10,7 @@ import ProductsPage from './components/ProductsPage';
 import ItemPage from './components/ItemPage';
 import NotFound from './components/NotFound';
 import ShoppingCartPage from './components/ShoppingCartPage';
+import ProtectedRoute from './routes/ProtectedRoute';
 
 function App() {
   WebFont.load({
@@ -20,16 +21,40 @@ function App() {
   return (
     <Router>
       <Routes>
-          <Route  path='/' element={<LogInPage />}/>
-          <Route  path='/home' element={<FirstPage />}/>
-          <Route  path='/:id' element={<ItemPage />}/>
-          <Route  path='/search' element={<SearchPage />}/>
-          <Route  path='/products' element={<ProductsPage />}/>
-          <Route  path='/products/:id' element={<ItemPage />}/>
-          <Route  path='/shoppingcart' element={<ShoppingCartPage />}/>
-          <Route  path='*' element={<NotFound />}/>
+        <Route path="/" element={<LogInPage />} />
+        <Route path="/home"
+          element={
+            <ProtectedRoute>
+              <FirstPage />
+            </ProtectedRoute>
+          } />
+        <Route path="/search"
+          element={
+          <ProtectedRoute>
+            <SearchPage />
+          </ProtectedRoute>
+          } />
+        <Route path="/products"
+          element={
+            <ProtectedRoute>
+              <ProductsPage />
+            </ProtectedRoute>
+          } />
+        <Route path="/products/:id"
+          element={
+            <ProtectedRoute>
+              <ItemPage />
+            </ProtectedRoute>
+              } />
+        <Route path="/shoppingcart"
+          element={
+            <ProtectedRoute>
+              <ShoppingCartPage />
+            </ProtectedRoute>
+          } />
+        <Route path="*" element={<NotFound />} />
       </Routes>
-    </Router>
+  </Router>
   )
 };
 

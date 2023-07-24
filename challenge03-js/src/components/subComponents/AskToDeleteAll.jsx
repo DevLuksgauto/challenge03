@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteAllFromCartBag } from '../../actions/cartBagAction';
 
 import { ThumbsUp, ThumbsDown, X } from 'react-feather';
-import nope from '../../assets/cryingCat404.jpg';
-import yep from '../../assets/happyCatYES.jpg'
 import classes from './AskToDeleteAll.module.css';
 
 const AskToDeleteAll = (props) => {
