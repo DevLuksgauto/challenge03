@@ -14,13 +14,11 @@ const cartBagReducer = (state = initialState, action) => {
         ...state,
         cartBag: [],
     };
-    case 'DECREASE_CART_ITEM_QUANTITY':
+    case 'DELETE_ITEM':
     const itemIdToRemove = action.payload;
     return {
         ...state,
-        cartBag: state.cartBag.map(item =>
-        item.id === itemIdToRemove ? { ...item, quantity: item.quantity - 1 } : item
-        ),
+        cartBag: state.cartBag.filter(item => item.id !== itemIdToRemove)
     };
     default:
         return state;

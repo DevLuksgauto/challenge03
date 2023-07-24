@@ -41,3 +41,11 @@
     text-decoration: none;
     margin: 0.6rem;
 }
+
+.even {
+    background-color: #f2f2f2; /* Cor do background para elementos pares */
+}
+
+.odd {
+    background-color: #e0e0e0; /* Cor do background para elementos ímpares */
+}

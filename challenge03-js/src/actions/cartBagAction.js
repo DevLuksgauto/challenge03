@@ -11,9 +11,9 @@ export const deleteAllFromCartBag = () => {
     };
 };
 
-export const decreaseCartItemQuantity = (itemId) => {
+export const deleteCartItem = (itemId) => {
     return {
-    type: 'DECREASE_CART_ITEM_QUANTITY',
+    type: 'DELETE_ITEM',
     payload: itemId,
     };
 };

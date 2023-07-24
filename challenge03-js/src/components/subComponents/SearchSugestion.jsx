@@ -6,9 +6,10 @@ const SearchSugestion = ({ suggestions }) => {
     
     return (
         <ul className={classes.suggestions}>
-            {suggestions.map((product) => (
+            {suggestions.map((product, index) => (
                 <li
                     key={product.id}
+                    className={index % 2 === 0 ? classes.even : classes.odd}
                     onClick={() => navigate(`/products/${product.id}`)}
                     >
                     {product.name}

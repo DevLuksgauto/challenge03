@@ -15,14 +15,12 @@ const LoginAuthenticationBtns = () => {
             e.preventDefault()
             const user = await FacebookAuth();
             navigate('/home');
-            console.log('Facebook user: ', user);
         };
 
         async function googleLoginHandler (e) {
             e.preventDefault()
             const user = await GoogleAuth();
             navigate('/home')
-            console.log('Google user: ', user);
         };
 
     return(

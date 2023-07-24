@@ -48,6 +48,15 @@ const FirstPage = () => {
         };    
         fetchDataAndSetWidth();
     }, [dispatch]);
+    
+    const [filteredData, setFilteredData] = useState(data);
+    const categoryHeadphoneHandler = () => {
+        setFilteredData(data.filter(item => item.category === 'Headphones'))
+    }
+    const categoryheadbandHandler = () => {
+        setFilteredData(data.filter(item => item.category === 'Headsets'))
+    }
+
 
     return (
         <Fragment>
@@ -66,8 +75,11 @@ const FirstPage = () => {
                 <h1 className={classes.title}>What are you looking for today?</h1>
                 <SearchBar/>
                 <div className={classes.carousselContainer}>
-                    <ItensCategory/>
-                    <CarouselProducts/>
+                    <ItensCategory
+                        headphone={categoryHeadphoneHandler}
+                        headband={categoryheadbandHandler}
+                        />
+                    <CarouselProducts filteredData={filteredData}/>
                     <div className={classes.FPContainer}>
                         <h2 className={classes.FeaturedProducts}>Featured Products</h2>
                         <Link className={classes.link} to='/products'>See All</Link>
