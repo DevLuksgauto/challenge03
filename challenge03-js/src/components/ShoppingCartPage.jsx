@@ -1,48 +1,84 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCartBag, decreaseCartItemQuantity } from '../actions/cartBagAction';
+import { deleteCartItem } from '../actions/cartBagAction';
 
 import { Trash2, ChevronLeft, ChevronRight } from 'react-feather';
 import AskToDeleteAll from './subComponents/AskToDeleteAll';
 import classes from './ShoppingCartPage.module.css';
 import ItemCartCard from './subComponents/ItemCartCard';
 const ShoppingCartPage = () => {
-    const [ totalPrice, setTotalPrice ] = useState(0);
+    const [ totalPrice, setTotalPrice ] = useState(1);
     const [ deleteBtn, setDeleteBtn ] = useState(false);
     const navigate  = useNavigate()
     const { id } = useParams();
     const dispatch = useDispatch();
     const cartBag = useSelector((state) => state.cart.cartBag);
+
     const handleBack = () => {
         navigate('/home')
     }
+    
+        const deleteAllBtnHandler = () =>{
+            deleteBtn === false ? setDeleteBtn(true) : setDeleteBtn(false)
+        }
 
-    const deleteBtnHandler = () =>{
-        deleteBtn === false ? setDeleteBtn(true) : setDeleteBtn(false)
-    }
+    const handleDeleteItem = (itemId) => {
+        dispatch(deleteCartItem(itemId));
+    };
 
-    const handleAddToCart = (id) => {
-        dispatch(addToCartBag(id));
-        console.log(cartBag)
-    }
-    const handleDecreaseItem = (item) => {
-        dispatch(decreaseCartItemQuantity(item));
-    }
+
     const noRepeteArray = (array) => {
         return array.filter((item, index) => array.indexOf(item) === index);
     }
-    const cartItems = noRepeteArray(cartBag)
+
+    const [ cartItems, setcartItems ] = useState([]);
+
+    useEffect(() => {
+        const uniqueCartItems = noRepeteArray(cartBag);
+        setcartItems(uniqueCartItems);
+
+    }, [cartBag]);
+    
+    const [ counter, setCounter ] = useState(1);
+    const [itemCounters, setItemCounters] = useState({});
+    useEffect(() => {
+        const totalcartBagPrice = cartItems.reduce((accumulator, item) => {
+            const price = parseFloat(item.price.replace('$', ''));
+            const counter = itemCounters[item.id] || 1;
+            const itemTotalPrice = price * counter;
+            return accumulator + itemTotalPrice;
+            // return accumulator + price;
+        }, 0);
+
+        setTotalPrice(totalcartBagPrice.toFixed(2));
+    }, [cartItems, itemCounters]);
+
+const counterDecreaseHandler = (itemId) => {
+setItemCounters((prevCounters) => ({
+    ...prevCounters,
+    [itemId]: (prevCounters[itemId] || 1) - 1,
+}));
+};
+
+const counterAddHandler = (itemId) => {
+setItemCounters((prevCounters) => ({
+    ...prevCounters,
+    [itemId]: (prevCounters[itemId] || 1) + 1,
+}));
+};
+
+
     return (
         <div className={classes.tudo}>
             <header className={classes.header}>
                 <button onClick={handleBack} className={classes.btnNoStyle}><ChevronLeft/></button>
                 <h1 className={classes.title}>Shopping Cart</h1>
-                <button onClick={deleteBtnHandler} className={classes.btnNoStyle}><Trash2/></button>
+                <button onClick={deleteAllBtnHandler} className={classes.btnNoStyle}><Trash2/></button>
             </header>
             {deleteBtn ?
                 <AskToDeleteAll
-                    deleteBtnOFF={deleteBtnHandler}
+                    deleteBtnOFF={deleteAllBtnHandler}
                 />
                 : <p></p>}
             <div className={classes.pageContainer}>
@@ -52,7 +88,10 @@ const ShoppingCartPage = () => {
                             key={Math.random(item)}
                             name={item.name}
                             price={item.price}
-                            deleteItem={deleteBtnHandler}
+                            decrease={() => handleDeleteItem(item.id)}
+                            counterDecrease={() => counterDecreaseHandler(item.id)}
+                            counterAdd={() => counterAddHandler(item.id)}
+                            counter={itemCounters[item.id] || 1}
                         />
                     ))
                     }
