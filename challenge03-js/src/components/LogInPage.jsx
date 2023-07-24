@@ -10,6 +10,7 @@ const LogInPage = () => {
     const [ ShowSignUp, setShowSignUp ] = useState(true);
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState("");
+    const [empityInput, setEmpityInput] = useState(false);
     const navigate = useNavigate();
 
     const loginHandler = () => !ShowSignUp ? setShowSignUp(true) : setShowSignUp(false);
@@ -17,16 +18,25 @@ const LogInPage = () => {
         const [signInWithEmailAndPassword, user, loading, error] =
             useSignInWithEmailAndPassword(auth);
     
-            const SigInHandler = (e) => {
+            const SigInHandler = async (e) => {
                 e.preventDefault();
-                signInWithEmailAndPassword(email, password);
-                console.log(user)
-            }
+console.log(error)
+                if (!email || !password) {
+                    console.error("Please enter both email and password.");
+                    setEmpityInput(true)
+                    return;
+                }
+                try {
+                    await signInWithEmailAndPassword(email, password);
+                } catch (err) {
+                    console.error("Login Error:", err);
+                }
+            };
             
         const navigateToHome = () => {
             if (user) {
                 navigate('/home');
-            }
+            } 
         };
         
         useEffect(() => {
@@ -61,6 +71,8 @@ const LogInPage = () => {
                         <Lock size={20} className={classes.icon}/>
                     </div>
                     {/* <p className={classes.p}>Forgot Password</p> */}
+                    {empityInput && !error && <p className={classes.failLoginAlert}>Please enter both email and password.</p>}
+                    {error && <p className={classes.failLoginAlert}>Invalid email or password</p>}
                     <Link to="/home"><button className={classes.signBtn} onClick={SigInHandler}>Sign In</button></Link>
                     <p className={classes.p}>Didn't have any account?  <span onClick={loginHandler} className={classes.span}>Sign Up here</span></p>
                 </form>
