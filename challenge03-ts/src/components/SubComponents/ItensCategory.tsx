@@ -1,18 +1,17 @@
-import { FC } from 'react';
-import classes from './ItensCategory.module.css';
+import React from 'react';
+import classes from '../../styleModules/ItensCategory.module.css';
 
 interface ItensCategoryProps {
-    categories: string[];
+    headphone: () => void;
+    headband: () => void;
 }
 
-const ItensCategory: FC<ItensCategoryProps> = ({ categories }) => {
+const ItensCategory: React.FC<ItensCategoryProps> = ({ headphone, headband }) => {
     return (
         <div className={classes.btnList}>
-            {categories.map((category, index) => (
-                <button key={index} className={classes.btnProduct}>
-                    {category}
-                </button>
-            ))}
+            <button className={classes.btnProduct} onClick={headphone}>Headphone</button>
+            <button className={classes.btnProduct} onClick={headband}>Headband</button>
+            <button className={classes.btnProduct}>Earpads</button>
         </div>
     );
 };

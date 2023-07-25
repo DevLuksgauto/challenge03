@@ -1,8 +1,8 @@
-import { FC } from 'react';
-import classes from './MenuPopUp.module.css';
+import React from 'react';
+import classes from '../../styleModules/MenuPopUp.module.css';
 import { Link } from 'react-router-dom';
 
-const MenuPopUp: FC = () => {
+const MenuPopUp: React.FC = () => {
     return (
         <div className={classes.navBar}>
             <button className={classes.btn}>

@@ -1,26 +1,24 @@
 import { useState, useEffect, Fragment, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchData } from '../../actions/FetchAction';
+import { fetchData } from '../../action/fetchAction';
 import { motion } from 'framer-motion';
-import CarouselCard from "./CarouselCard";
-import classes from './CarouselProducts.module.css';
+import CarouselCard from "../SubComponents/CarouselCard";
+import classes from '../../styleModules/CarouselProducts.module.css';
 
-interface DataItem {
-  id: number;
-  name: string;
-  // Adicione outros campos da estrutura de dados, se houver
+interface CarouselProductsProps {
+  filteredData: { id: string }[]; // ou { id: number }[], dependendo do tipo do ID no seu sistema
 }
 
-const CarouselProducts: React.FC = () => {
+const CarouselProducts: React.FC<CarouselProductsProps> = ({ filteredData }) => {
   const dispatch = useDispatch();
-  const data = useSelector((state: { reducer: { data: DataItem[] } }) => state.reducer.data);
+  const data = useSelector((state) => state.reducer.data);
   const carousel = useRef<HTMLDivElement>(null);
-  const [width, setWidth] = useState<number>(0);
+  const [width, setWidth] = useState(0);
 
   useEffect(() => {
     const fetchDataAndSetWidth = async () => {
       const fetchedData = await dispatch(fetchData());
-      setWidth(carousel.current?.scrollWidth - carousel.current?.offsetWidth || 0);
+      setWidth(carousel.current?.scrollWidth - carousel.current?.offsetWidth);
     };
     fetchDataAndSetWidth();
   }, [dispatch]);
@@ -33,12 +31,9 @@ const CarouselProducts: React.FC = () => {
           drag="x"
           dragConstraints={{ right: 0, left: -width }}
         >
-          {data.map((card) => (
-            <motion.div className={classes.card} key={card.id}>
-              <CarouselCard
-                name={card.name}
-                id={card.id}
-              />
+          {filteredData.map((card) => (
+            <motion.div className={classes.card} key={Math.random()}>
+              <CarouselCard name={data[card.id].name} id={data[card.id].id} />
             </motion.div>
           ))}
         </motion.div>

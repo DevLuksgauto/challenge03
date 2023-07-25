@@ -1,7 +1,7 @@
-import { FC } from 'react';
-import classes from './Loading.module.css';
+import React from "react";
+import classes from '../../styleModules/Loading.module.css';
 
-const Loading: FC = () => {
+const Loading: React.FC = () => {
     return (
         <div className={classes.container}>
             <h1 className={classes.h1}>Wait...</h1>

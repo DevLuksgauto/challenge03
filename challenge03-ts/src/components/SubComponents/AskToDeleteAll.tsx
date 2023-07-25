@@ -1,12 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteAllFromCartBag } from '../../actions/cartBagAction';
-import { RootState } from "../../store"; // Certifique-se de importar o tipo RootState corretamente de onde ele estiver definido.
+import { deleteAllFromCartBag } from '../../action/cartBagAction';
 
 import { ThumbsUp, ThumbsDown, X } from 'react-feather';
-import nope from '../../assets/cryingCat404.jpg';
-import yep from '../../assets/happyCatYES.jpg';
-import classes from './AskToDeleteAll.module.css';
+import classes from '../../styleModules/AskToDeleteAll.module.css';
 
 interface AskToDeleteAllProps {
   deleteBtnOFF: () => void;
@@ -37,7 +34,7 @@ const AskToDeleteAll: React.FC<AskToDeleteAllProps> = (props) => {
         <button className={classes.btnNoStyle} onClick={noDeleteHandler}><ThumbsDown size={40} /></button>
       </div>
     </div>
-  );
+  )
 };
 
 export default AskToDeleteAll;

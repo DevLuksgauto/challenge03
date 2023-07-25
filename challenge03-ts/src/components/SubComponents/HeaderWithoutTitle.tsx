@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { Fragment } from 'react';
 
 import { ChevronLeft, ShoppingCart } from 'react-feather';
-import classes from './HeadersStyle.module.css';
+import classes from '../../styleModules/HeadersStyle.module.css';
 
 const HeaderWithoutTitle: React.FC = () => {
     const navigate = useNavigate();

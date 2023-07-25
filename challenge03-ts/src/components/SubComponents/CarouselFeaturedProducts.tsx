@@ -1,10 +1,10 @@
 import { useState, useEffect, Fragment, useRef } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchData } from '../../actions/FetchAction';
+import { fetchData } from '../../action/fetchAction';
 import { motion } from 'framer-motion';
 import { RootState } from "../../store"; // Certifique-se de importar o tipo RootState corretamente de onde ele estiver definido.
-import CarouselFPCard from "../subComponents/CarouselFPCard";
-import classes from '../subComponents/CarouselFeaturedProducts.module.css';
+import CarouselFPCard from "../SubComponents/CarouselFPCard";
+import classes from '../../styleModules/CarouselFeaturedProducts.module.css';
 
 const CarouselFeaturedProducts: React.FC = () => {
   const dispatch = useDispatch();

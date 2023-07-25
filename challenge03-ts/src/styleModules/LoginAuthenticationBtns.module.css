@@ -1,0 +1,26 @@
+.container{
+    display: flex;
+    gap: 0.938rem;
+}
+.socialMedia{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3.4rem;
+    height: 3.4rem;
+    border-radius: 10px;
+    border: none;
+}
+.kkk{
+    width: 3.4rem;
+    height: 3.4rem;
+    border-radius: 0.625rem;
+    border: none;
+}
+.p{
+    margin-top: 0.3rem;
+    font-size: 0.87rem;
+}
+.span{
+    color: #0ACF83;
+}

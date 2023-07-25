@@ -1,32 +1,24 @@
 import { useEffect, Fragment } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { fetchData } from '../actions/FetchAction';
-import SearchBar from "./subComponents/SearchBar";
-import Loading from './subComponents/Loading';
-import PopularProducts from './subComponents/PopularProducts';
+import { fetchData } from '../action/fetchAction';
+import SearchBar from "./SubComponents/SearchBar";
+import Loading from './SubComponents/Loading';
+import PopularProducts from './SubComponents/PopularProducts';
 import { ChevronLeft, ShoppingCart } from "react-feather";
-import classes from './SearchPage.module.css';
-
-interface RootState {
-  reducer: {
-    data: any[]; // Replace 'any' with the actual data type of your 'data' state
-  };
-}
+import classes from '../styleModules/SearchPage.module.css';
 
 const SearchPage: React.FC = () => {
   const navigate = useNavigate();
-
   const handleBack = () => {
     navigate('/home');
-  }
+  };
 
   const dispatch = useDispatch();
-  const data = useSelector((state: RootState) => state.reducer.data);
-
+  const data = useSelector((state) => state.reducer.data);
   useEffect(() => {
     const fetchDataAndSetWidth = async () => {
-      await dispatch(fetchData());
+      const fetchedData = await dispatch(fetchData());
     };
     fetchDataAndSetWidth();
   }, [dispatch]);
@@ -42,7 +34,7 @@ const SearchPage: React.FC = () => {
 
   return (
     <Fragment>
-      {data.length > 0 ? (
+      {data.length > 0 ?
         <div>
           <header className={classes.header}>
             <button onClick={handleBack} className={classes.btnNoStyle}><ChevronLeft /></button>
@@ -62,9 +54,8 @@ const SearchPage: React.FC = () => {
             />
           ))}
         </div>
-      ) : (
-        <Loading />
-      )}
+        :
+        <Loading />}
     </Fragment>
   );
 };
