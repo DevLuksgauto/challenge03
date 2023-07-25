@@ -25,7 +25,6 @@ const FilterButton = ({ allData, onFilter }) => {
     setSortBy(sortType);
   }
   useEffect(() => {
-    // Lógica para ordenar os dados com base em 'sortBy'
     const sortData = (data) => {
       switch (sortBy) {
         case 'popularity':

@@ -20,7 +20,6 @@ const LogInPage = () => {
     
             const SigInHandler = async (e) => {
                 e.preventDefault();
-console.log(error)
                 if (!email || !password) {
                     console.error("Please enter both email and password.");
                     setEmpityInput(true)

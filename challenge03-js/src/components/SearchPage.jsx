@@ -1,7 +1,6 @@
-import { useEffect, Fragment } from "react";
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
-import { fetchData } from '../actions/FetchAction';
+import { Fragment } from "react";
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import SearchBar from "./subComponents/SearchBar";
 import Loading from './subComponents/Loading'
 
@@ -11,19 +10,11 @@ import { ChevronLeft, ShoppingCart } from "react-feather";
 import classes from './SearchPage.module.css'
 
 const SearchPage = () => {
+    const data = useSelector((state) => state.reducer.data);
     const navigate  = useNavigate()
     const handleBack = () => {
         navigate('/home')
     }
-
-    const dispatch = useDispatch();
-    const data = useSelector((state) => state.reducer.data);
-    useEffect(() => {
-        const fetchDataAndSetWidth = async () => {
-        const fetchedData = await dispatch(fetchData());
-        };    
-        fetchDataAndSetWidth();
-    }, [dispatch]);
 
 const popularProducts = [];
     if (data.length > 0){

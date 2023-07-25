@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import foto1 from '../../assets/luks1.png';
 import foto2 from '../../assets/luks2.png';
 import foto3 from '../../assets/luks3.png';

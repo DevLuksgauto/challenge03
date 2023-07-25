@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteCartItem } from '../actions/cartBagAction';
 
@@ -11,7 +11,6 @@ const ShoppingCartPage = () => {
     const [ totalPrice, setTotalPrice ] = useState(1);
     const [ deleteBtn, setDeleteBtn ] = useState(false);
     const navigate  = useNavigate()
-    const { id } = useParams();
     const dispatch = useDispatch();
     const cartBag = useSelector((state) => state.cart.cartBag);
 
@@ -19,28 +18,22 @@ const ShoppingCartPage = () => {
         navigate('/home')
     }
     
-        const deleteAllBtnHandler = () =>{
-            deleteBtn === false ? setDeleteBtn(true) : setDeleteBtn(false)
-        }
-
+    const deleteAllBtnHandler = () =>{
+        deleteBtn === false ? setDeleteBtn(true) : setDeleteBtn(false)
+    }
     const handleDeleteItem = (itemId) => {
         dispatch(deleteCartItem(itemId));
     };
-
-
     const noRepeteArray = (array) => {
         return array.filter((item, index) => array.indexOf(item) === index);
     }
 
     const [ cartItems, setcartItems ] = useState([]);
-
     useEffect(() => {
         const uniqueCartItems = noRepeteArray(cartBag);
         setcartItems(uniqueCartItems);
-
     }, [cartBag]);
     
-    const [ counter, setCounter ] = useState(1);
     const [itemCounters, setItemCounters] = useState({});
     useEffect(() => {
         const totalcartBagPrice = cartItems.reduce((accumulator, item) => {
@@ -48,7 +41,6 @@ const ShoppingCartPage = () => {
             const counter = itemCounters[item.id] || 1;
             const itemTotalPrice = price * counter;
             return accumulator + itemTotalPrice;
-            // return accumulator + price;
         }, 0);
 
         setTotalPrice(totalcartBagPrice.toFixed(2));
@@ -68,6 +60,15 @@ setItemCounters((prevCounters) => ({
 }));
 };
 
+const calculateTotalItems = () => {
+    let totalItems = 0;
+    for (const item of cartItems) {
+        const itemId = item.id;
+        const quantity = itemCounters[itemId] || 1;
+        totalItems += quantity;
+    }
+    return totalItems;
+}
 
     return (
         <div className={classes.tudo}>
@@ -98,7 +99,7 @@ setItemCounters((prevCounters) => ({
                 </div>
             </div>
             <div className={classes.totalPriceContainer}>
-                <p>Total {cartItems.length} items</p>
+                <p>Total {calculateTotalItems()} items</p>
                 <p className={classes.totalPrice}>USD {totalPrice}</p>
             </div>
                 <button className={classes.checkoutBtn}>Proceed to Checkout<ChevronRight size={25}/></button>

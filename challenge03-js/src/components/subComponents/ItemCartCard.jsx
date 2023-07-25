@@ -1,4 +1,4 @@
-import { MinusSquare, PlusSquare, Trash2 } from 'react-feather';
+import { Trash2 } from 'react-feather';
 import classes from './ItemCartCard.module.css';
 import foto1 from '../../assets/phone1.png';
 

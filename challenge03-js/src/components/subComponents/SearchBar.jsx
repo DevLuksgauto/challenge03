@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchData } from '../../actions/FetchAction';
+import { useSelector } from 'react-redux';
 
 import { Search } from 'react-feather';
 import classes from './SearchBar.module.css';
@@ -9,19 +8,10 @@ import SearchSugestion from "./SearchSugestion";
 
 
 const SearchBar = () => {
-    const dispatch = useDispatch();
     const data = useSelector((state) => state.reducer.data);
     const [ searchQuery, setSearchQuery ] = useState('');
-    // const [ pageID, setpageID ] = useState('');
     const [suggestions, setSuggestions] = useState([])
     const navigate = useNavigate();
-
-    useEffect(() => {
-        const fetchDataAndSetWidth = async () => {
-        const fetchedData = await dispatch(fetchData());
-        };    
-        fetchDataAndSetWidth();
-    }, [dispatch]);
 
     const SearchHandler = (e) => {
         setSearchQuery(e.target.value);

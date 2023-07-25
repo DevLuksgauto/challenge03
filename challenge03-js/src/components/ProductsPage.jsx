@@ -1,7 +1,5 @@
-import { useEffect, useState, Fragment } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { addToCartBag } from '../actions/cartBagAction';
-import { fetchData } from '../actions/FetchAction';
+import { useState, Fragment } from 'react';
+import { useSelector } from 'react-redux';
 
 import FilterButton from './subComponents/FilterButton';
 import CarouselFPCard from './subComponents/CarouselFPCard';
@@ -9,22 +7,12 @@ import Loading from './subComponents/Loading';
 import classes from './ProductsPage.module.css';
 import HeaderWithoutTitle from './subComponents/HeaderWithoutTitle';
 
-const ProductsPage = (props) => {
-    const dispatch = useDispatch();
+const ProductsPage = () => {
     const data = useSelector((state) => state.reducer.data);
     const [filteredData, setFilteredData] = useState(data);
     const handleFilter = (filteredData) => {
         setFilteredData(filteredData);
     };
-
-    useEffect(() => {
-        const fetchDataAndSetWidth = async () => {
-        const fetchedData = await dispatch(fetchData());
-        };    
-        fetchDataAndSetWidth();
-    }, [dispatch]);
-
-    
 
     return(
         <Fragment>

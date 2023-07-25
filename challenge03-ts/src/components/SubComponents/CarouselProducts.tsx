@@ -1,5 +1,5 @@
 import { useState, useEffect, Fragment, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { motion } from 'framer-motion';
 import { RootState } from "../../reducers/rootReducer";
 import CarouselCard from "../SubComponents/CarouselCard";
@@ -14,7 +14,6 @@ interface CarouselProductsProps {
 }
 
 const CarouselProducts: React.FC<CarouselProductsProps> = ({ filteredData }) => {
-  const dispatch = useDispatch();
   const data = useSelector((state: RootState) => state.reducer.data);
   const carousel = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(0);

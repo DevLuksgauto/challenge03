@@ -6,16 +6,12 @@ import classes from './ItemPicCarousel.module.css';
 
 
 const ItemPicCarousel = () => {
-    const carousel = useRef();
-    const [width, setWidth] = useState(0);
-    useEffect(() => {
-        setWidth(carousel.current?.scrollWidth - carousel.current?.offsetWidth);
-    },[])
+
 
     const pictures = [ foto1, foto2 ];
     return (
         <Fragment>
-            <motion.div ref={carousel} className={classes.carousel}>
+            <motion.div className={classes.carousel}>
                 <motion.div className={classes.inner}
                 drag="x"
                 dragConstraints={{ right: 0, left: -260}}

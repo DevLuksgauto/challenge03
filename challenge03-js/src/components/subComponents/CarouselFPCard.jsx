@@ -1,7 +1,6 @@
 import classes from './CarouselFPCard.module.css';
 import cable1 from '../../assets/Cable1.png'
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
 
 const CarouselFPCard = (props) => {
     const navigate = useNavigate();
