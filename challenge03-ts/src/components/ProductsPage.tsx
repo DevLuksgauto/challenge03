@@ -1,56 +1,56 @@
-import { useEffect, Fragment } from 'react';
+
+import { useEffect, useState, Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCartBag } from '../actions/cartBagAction';
+// import { addToCartBag } from '../actions/cartBagAction';
 import { fetchData } from '../action/fetchAction';
+import { RootState } from '../reducers'; // Importe o tipo RootState
 
 import FilterButton from './SubComponents/FilterButton';
 import CarouselFPCard from './SubComponents/CarouselFPCard';
 import Loading from './SubComponents/Loading';
-import classes from './ProductsPage.module.css';
+import classes from '../styleModules/ProductsPage.module.css';
 import HeaderWithoutTitle from './SubComponents/HeaderWithoutTitle';
 
-interface RootState {
-  reducer: {
-    data: any[]; // Replace 'any' with the actual data type of your 'data' state
-  };
-}
-
-const ProductsPage: React.FC = () => {
+const ProductsPage: React.FC = (props) => {
   const dispatch = useDispatch();
-  const data = useSelector((state: RootState) => state.reducer.data);
+  const data = useSelector((state: RootState) => state.reducer.data); // Use o tipo RootState para tipar o useSelector
+  const [filteredData, setFilteredData] = useState(data);
+  const handleFilter = (filteredData: Item[]) => { // Adicione o tipo 'Item[]' para o parâmetro 'filteredData'
+    setFilteredData(filteredData);
+  };
 
   useEffect(() => {
     const fetchDataAndSetWidth = async () => {
-      await dispatch(fetchData());
+      const fetchedData = await dispatch(fetchData());
     };
     fetchDataAndSetWidth();
   }, [dispatch]);
 
   return (
     <Fragment>
-      {data.length > 0 ? (
+      {filteredData.length > 0 ?
         <div>
           <HeaderWithoutTitle />
           <p className={classes.title}>Featured products</p>
           <p className={classes.subTitle}>See all products</p>
-          <FilterButton />
+          <FilterButton
+            allData={data}
+            onFilter={handleFilter}
+          />
           <div className={classes.ProductsContainer}>
-            {data.map((item) => (
+            {filteredData.map(item => (
               <div className={classes.productsFilter} key={item.id}>
                 <CarouselFPCard
-                  name={data[item.id].name}
-                  price={data[item.id].price}
-                  id={data[item.id].id}
+                  name={item.name} // Use 'item.name' em vez de 'data[item.id].name'
+                  price={item.price} // Use 'item.price' em vez de 'data[item.id].price'
+                  id={item.id} // Use 'item.id' em vez de 'data[item.id].id'
                 />
               </div>
             ))}
           </div>
-        </div>
-      ) : (
-        <Loading />
-      )}
+        </div> : <Loading />}
     </Fragment>
-  );
+  )
 };
 
 export default ProductsPage;

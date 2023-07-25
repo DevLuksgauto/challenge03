@@ -2,9 +2,7 @@ import { useState, useRef, Fragment, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import foto1 from '../../assets/HeadPhonePic.png';
 import foto2 from '../../assets/HeadphoneClose.png';
-import classes from './ItemPicCarousel.module.css';
-
-const pictures: string[] = [foto1, foto2];
+import classes from '../../styleModules/ItemPicCarousel.module.css';
 
 const ItemPicCarousel: React.FC = () => {
     const carousel = useRef<HTMLDivElement>(null);
@@ -13,6 +11,8 @@ const ItemPicCarousel: React.FC = () => {
     useEffect(() => {
         setWidth(carousel.current?.scrollWidth - carousel.current?.offsetWidth);
     }, []);
+
+    const pictures: string[] = [foto1, foto2];
 
     return (
         <Fragment>
@@ -23,7 +23,7 @@ const ItemPicCarousel: React.FC = () => {
                     dragConstraints={{ right: 0, left: -260 }}
                 >
                     {pictures.map((pic) => (
-                        <motion.div className={classes.pic} key={Math.random()}>
+                        <motion.div className={classes.pic} key={Math.random()} drag="x">
                             <img src={pic} alt="Foto do produto" />
                         </motion.div>
                     ))}

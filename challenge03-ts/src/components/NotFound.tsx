@@ -32,7 +32,7 @@ const NotFound: React.FC = () => {
           to='/home'>Take me away</Link>
       </button>
     </div>
-  );
+  )
 };
 
 export default NotFound;

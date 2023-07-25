@@ -14,7 +14,6 @@ import ItensCategory from "./subComponents/ItensCategory";
 import CarouselFeaturedProducts from "./subComponents/CarouselFeaturedProducts";
 import MenuPopUp from './subComponents/MenuPopUp';
 import { AlignLeft } from 'react-feather';
-import { FacebookAuthProvider } from 'firebase/auth';
 
 import classes from './FirstPage.module.css';
 import userUnknow from '../assets/cryingCat404.jpg';

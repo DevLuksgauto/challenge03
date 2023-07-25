@@ -25,3 +25,27 @@
     left: 2rem;
     transform: translateY(-50%);
 }
+.suggestions{
+    color: rgb(107, 106, 106);
+    position: absolute;
+    top: 3.7rem;
+    width: 90vw;
+    height: 10rem;
+    z-index: 1;
+    border: 1px solid rgba(186, 186, 186, 1);;
+    border-radius: 0 0 1rem 1rem;
+    overflow: scroll;
+    background-color: #fff;
+}
+.suggestions li{
+    text-decoration: none;
+    margin: 0.6rem;
+}
+
+.even {
+    background-color: #f2f2f2; /* Cor do background para elementos pares */
+}
+
+.odd {
+    background-color: #e0e0e0; /* Cor do background para elementos ímpares */
+}

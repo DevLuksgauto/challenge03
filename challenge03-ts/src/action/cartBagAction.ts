@@ -1,30 +1,44 @@
-import { CartItem } from '../types'; // Certifique-se de importar o tipo 'CartItem' corretamente de onde ele estiver definido.
+// Importe os tipos necessários, se aplicável
+// import { SomeType } from 'some-library';
 
-export const addToCartBag = (item: CartItem) => {
+interface CartItem {
+  id: number;
+  name: string;
+  price: number;
+}
+
+interface AddToCartAction {
+  type: 'ADD_TO_CART';
+  payload: CartItem;
+}
+
+interface DeleteAllFromCartAction {
+  type: 'DELETE_ALL_FROM_CART';
+}
+
+interface DeleteCartItemAction {
+  type: 'DELETE_ITEM';
+  payload: number;
+}
+
+type CartActionTypes = AddToCartAction | DeleteAllFromCartAction | DeleteCartItemAction;
+
+export const addToCartBag = (item: CartItem): CartActionTypes => {
   return {
-    type: 'ADD_TO_CART' as const,
+    type: 'ADD_TO_CART',
     payload: item,
   };
 };
 
-export const deleteAllFromCartBag = () => {
+export const deleteAllFromCartBag = (): CartActionTypes => {
   return {
-    type: 'DELETE_ALL_FROM_CART' as const,
+    type: 'DELETE_ALL_FROM_CART',
   };
 };
 
-export const decreaseCartItemQuantity = (itemId: number) => {
+export const deleteCartItem = (itemId: number): CartActionTypes => {
   return {
-    type: 'DECREASE_CART_ITEM_QUANTITY' as const,
+    type: 'DELETE_ITEM',
     payload: itemId,
   };
 };
-
-// Outros tipos relevantes que possam ser usados no código:
-// types.ts
-// export type CartItem = {
-//   id: number;
-//   name: string;
-//   price: string;
-//   // Outros campos relevantes do item do carrinho...
-// };

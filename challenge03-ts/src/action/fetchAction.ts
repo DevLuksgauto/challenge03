@@ -1,20 +1,33 @@
-import axios, { AxiosResponse } from "axios";
-import { ThunkAction } from "redux-thunk";
-import { RootState } from "../store"; // Certifique-se de importar o tipo RootState corretamente de onde ele estiver definido.
+import axios, { AxiosResponse, AxiosError } from "axios";
+import { Dispatch } from "redux";
 
-export const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS';
+const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS';
 
-export const fetchDataSuccess = (data: any) => ({
+export { FETCH_DATA_SUCCESS }
+
+interface Data {
+  id: number;
+  name: string;
+}
+
+interface FetchDataSuccessAction {
+  type: typeof FETCH_DATA_SUCCESS;
+  payload: Data[];
+}
+
+type DataActionTypes = FetchDataSuccessAction;
+
+export const fetchDataSuccess = (data: Data[]): DataActionTypes => ({
   type: FETCH_DATA_SUCCESS,
   payload: data,
 });
 
-export const fetchData = (): ThunkAction<void, RootState, unknown, any> => {
-  return (dispatch) => {
-    return axios.get('https://run.mocky.io/v3/15d284a1-db22-4fa9-970b-a6ba468b93d6')
-      .then((res: AxiosResponse) => res.data)
-      .then((data: any) => dispatch(fetchDataSuccess(data)))
-      .catch((error) => {
+export const fetchData = () => {
+  return (dispatch: Dispatch<DataActionTypes>) => {
+    return axios.get<Data[], AxiosResponse<Data[]>, AxiosError<Data[]>>('https://run.mocky.io/v3/15d284a1-db22-4fa9-970b-a6ba468b93d6')
+      .then((res: AxiosResponse<Data[]>) => res.data)
+      .then((data: Data[]) => dispatch(fetchDataSuccess(data)))
+      .catch((error: AxiosError<Data[]>) => {
         console.log(error);
         return [];
       });
