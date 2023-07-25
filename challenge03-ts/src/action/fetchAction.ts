@@ -15,7 +15,7 @@ interface FetchDataSuccessAction {
   payload: Data[];
 }
 
-type DataActionTypes = FetchDataSuccessAction;
+export type DataActionTypes = FetchDataSuccessAction;
 
 export const fetchDataSuccess = (data: Data[]): DataActionTypes => ({
   type: FETCH_DATA_SUCCESS,

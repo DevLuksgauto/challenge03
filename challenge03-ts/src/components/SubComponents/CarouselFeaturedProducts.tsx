@@ -1,24 +1,21 @@
 import { useState, useEffect, Fragment, useRef } from "react";
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchData } from '../../action/fetchAction';
+import { useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
-import { RootState } from "../../store"; // Certifique-se de importar o tipo RootState corretamente de onde ele estiver definido.
+import { RootState } from "../../reducers/rootReducer"; 
 import CarouselFPCard from "../SubComponents/CarouselFPCard";
 import classes from '../../styleModules/CarouselFeaturedProducts.module.css';
 
 const CarouselFeaturedProducts: React.FC = () => {
-  const dispatch = useDispatch();
   const data = useSelector((state: RootState) => state.reducer.data);
   const carousel = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState<number>(0);
 
   useEffect(() => {
-    const fetchDataAndSetWidth = async () => {
-      const fetchedData = await dispatch(fetchData());
-      setWidth(carousel.current?.scrollWidth - carousel.current?.offsetWidth || 0);
+    const SetWidth = async () => {
+      setWidth(carousel.current ? carousel.current.scrollWidth - carousel.current.offsetWidth : 0);
     };
-    fetchDataAndSetWidth();
-  }, [dispatch]);
+    SetWidth();
+  }, []);
 
   return (
     <Fragment>

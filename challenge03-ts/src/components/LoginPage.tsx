@@ -15,7 +15,7 @@ const LogInPage: React.FC = () => {
 
   const loginHandler = () => setShowSignUp(prevState => !prevState);
 
-  const [signInWithEmailAndPassword, user, loading, error] =
+  const [signInWithEmailAndPassword, user, error] =
     useSignInWithEmailAndPassword(auth);
 
   const SigInHandler = async (e: React.FormEvent) => {
@@ -43,6 +43,8 @@ const LogInPage: React.FC = () => {
   useEffect(() => {
     navigateToHome();
   }, [user]);
+
+
 
   return (
     <div className={classes.firstPage}>

@@ -1,27 +1,30 @@
 import { useState, useEffect, Fragment, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchData } from '../../action/fetchAction';
 import { motion } from 'framer-motion';
+import { RootState } from "../../reducers/rootReducer";
 import CarouselCard from "../SubComponents/CarouselCard";
 import classes from '../../styleModules/CarouselProducts.module.css';
 
+interface Product {
+  id: any; 
+  name: string;
+}
 interface CarouselProductsProps {
-  filteredData: { id: string }[]; // ou { id: number }[], dependendo do tipo do ID no seu sistema
+  filteredData: Product[];
 }
 
 const CarouselProducts: React.FC<CarouselProductsProps> = ({ filteredData }) => {
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.reducer.data);
+  const data = useSelector((state: RootState) => state.reducer.data);
   const carousel = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(0);
 
   useEffect(() => {
-    const fetchDataAndSetWidth = async () => {
-      const fetchedData = await dispatch(fetchData());
-      setWidth(carousel.current?.scrollWidth - carousel.current?.offsetWidth);
+    const SetWidth = async () => {
+      setWidth(carousel.current ? carousel.current.scrollWidth - carousel.current.offsetWidth : 0);
     };
-    fetchDataAndSetWidth();
-  }, [dispatch]);
+    SetWidth();
+  }, []);
 
   return (
     <Fragment>

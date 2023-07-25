@@ -4,7 +4,7 @@ import phone1 from '../../assets/phone1.png';
 import classes from '../../styleModules/CarouselCard.module.css';
 
 interface CarouselCardProps {
-  id: string; // Coloque o tipo correto do ID, pode ser string ou number, dependendo do tipo do ID no seu sistema.
+  id: string;
   name: string;
 }
 

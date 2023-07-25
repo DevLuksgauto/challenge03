@@ -1,9 +1,8 @@
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import { useState, useEffect, Fragment } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { useState, Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchData } from '../action/fetchAction';
 import { addToCartBag } from '../action/cartBagAction';
-import { RootState } from '../reducers';
+import { RootState } from '../reducers/rootReducer';
 
 import classes from '../styleModules/ItemPage.module.css';
 import HeaderWithoutTitle from './SubComponents/HeaderWithoutTitle';
@@ -13,24 +12,26 @@ import CarouselFeaturedProducts from './SubComponents/CarouselFeaturedProducts';
 import FeaturesContainer from './SubComponents/FeaturesContainer';
 import ItemPicCarousel from './SubComponents/ItemPicCarousel';
 
+interface Review {
+  id: string;
+  user: string;
+  description: string;
+  rating: number;
+}
+interface Product {
+  id: string;
+  name: string;
+  price: string;
+  description: string;
+  category: string;
+  reviews: Review[];
+}
+
 const ItemPage: React.FC = () => {
-  const navigate = useNavigate();
-  const { id } = useParams();
+  const {id}: any = useParams();
   const dispatch = useDispatch();
-  const data = useSelector((state: RootState) => state.reducer.data); // Use o tipo RootState para tipar o useSelector
-  const cartBag = useSelector((state: RootState) => state.cart.cartBag); // Use o tipo RootState para tipar o useSelector
+  const data = useSelector((state: RootState) => state.reducer.data);
   const [showFeatures, setShowFeatures] = useState(false);
-
-  useEffect(() => {
-    const fetchDataAndSetWidth = async () => {
-      const fetchedData = await dispatch(fetchData());
-    };
-    fetchDataAndSetWidth();
-  }, [dispatch]);
-
-  const handleBack = () => {
-    navigate(-1);
-  };
 
   const handleAddToCart = () => {
     dispatch(addToCartBag(data[id]));
@@ -69,12 +70,12 @@ const ItemPage: React.FC = () => {
               <ItemPicCarousel />
               <div className={classes.reviewsContainer}>
                 <p className={classes.review}>Reviews</p>
-                {data[id].reviews.map((review) =>
+                {data[id].reviews.map((review: Review) =>
                   <Reviews
                     key={review.id}
-                    name={review.user} // Use 'review.user' em vez de 'data[id].reviews[review.id].user'
-                    description={review.description} // Use 'review.description' em vez de 'data[id].reviews[review.id].description'
-                    rating={review.rating} // Use 'review.rating' em vez de 'data[id].reviews[review.id].rating'
+                    name={review.user}
+                    description={review.description}
+                    rating={review.rating}
                   />
                 )}
               </div>
@@ -87,7 +88,7 @@ const ItemPage: React.FC = () => {
               </div>
             </div>
           )}
-          <button onClick={handleAddToCart} className={classes.addToCartBtn}><Link className={classes.link2}>Add to Cart</Link></button>
+          <button onClick={handleAddToCart} className={classes.addToCartBtn}><Link to='' className={classes.link2}>Add to Cart</Link></button>
         </div>
       ) : (
         <Loading />

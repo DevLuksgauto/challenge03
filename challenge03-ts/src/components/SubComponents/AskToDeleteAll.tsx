@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteAllFromCartBag } from '../../action/cartBagAction';
+import { RootState } from "../../reducers/rootReducer";
 
 import { ThumbsUp, ThumbsDown, X } from 'react-feather';
 import classes from '../../styleModules/AskToDeleteAll.module.css';

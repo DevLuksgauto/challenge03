@@ -3,7 +3,7 @@ import cable1 from '../../assets/Cable1.png';
 import { useNavigate } from 'react-router-dom';
 
 interface CarouselFPCardProps {
-  id: string; // ou number, dependendo do tipo do ID no seu sistema
+  id: string;
   name: string;
   price: string;
 }
@@ -21,7 +21,6 @@ const CarouselFPCard: React.FC<CarouselFPCardProps> = (props) => {
     scrollToTop();
   };
 
-  // Verifica se a propriedade 'price' está definida antes de chamar o método 'replace'
   const formattedPrice = props.price ? props.price.replace(/^\$/, "USD ") : "";
 
   return (
