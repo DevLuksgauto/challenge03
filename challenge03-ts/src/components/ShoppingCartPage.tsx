@@ -1,21 +1,20 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteCartItem } from '../action/cartBagAction';
 
 import { Trash2, ChevronLeft, ChevronRight } from 'react-feather';
 import AskToDeleteAll from './SubComponents/AskToDeleteAll';
 import ItemCartCard from './SubComponents/ItemCartCard';
-import { RootState } from '../reducers'; // Importe o tipo RootState
+import { RootState } from '../reducers/rootReducer';
 import classes from '../styleModules/ShoppingCartPage.module.css';
 
 const ShoppingCartPage: React.FC = () => {
   const [totalPrice, setTotalPrice] = useState(1);
   const [deleteBtn, setDeleteBtn] = useState(false);
   const navigate = useNavigate();
-  const { id } = useParams();
   const dispatch = useDispatch();
-  const cartBag = useSelector((state: RootState) => state.cart.cartBag); // Use o tipo RootState para tipar o useSelector
+  const cartBag = useSelector((state: RootState) => state.cart.cartBag);
 
   const handleBack = () => {
     navigate('/home');
@@ -40,7 +39,6 @@ const ShoppingCartPage: React.FC = () => {
     setcartItems(uniqueCartItems);
   }, [cartBag]);
 
-  const [counter, setCounter] = useState(1);
   const [itemCounters, setItemCounters] = useState<{ [key: number]: number }>({});
   useEffect(() => {
     const totalcartBagPrice = cartItems.reduce((accumulator, item) => {
@@ -70,9 +68,9 @@ const ShoppingCartPage: React.FC = () => {
   return (
     <div className={classes.tudo}>
       <header className={classes.header}>
-        <button onClick={handleBack} className={classes.btnNoStyle}><ChevronLeft /></button>
+        <button aria-label="comeback" onClick={handleBack} className={classes.btnNoStyle}><ChevronLeft /></button>
         <h1 className={classes.title}>Shopping Cart</h1>
-        <button onClick={deleteAllBtnHandler} className={classes.btnNoStyle}><Trash2 /></button>
+        <button aria-label="delete" onClick={deleteAllBtnHandler} className={classes.btnNoStyle}><Trash2 /></button>
       </header>
       {deleteBtn ?
         <AskToDeleteAll

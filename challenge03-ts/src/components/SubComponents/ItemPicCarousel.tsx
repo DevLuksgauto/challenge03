@@ -9,7 +9,10 @@ const ItemPicCarousel: React.FC = () => {
     const [width, setWidth] = useState<number>(0);
 
     useEffect(() => {
-        setWidth(carousel.current?.scrollWidth - carousel.current?.offsetWidth);
+        const SetWidth = async () => {
+        setWidth(carousel.current ? carousel.current.scrollWidth - carousel.current.offsetWidth : 0);
+        };
+        SetWidth();
     }, []);
 
     const pictures: string[] = [foto1, foto2];
@@ -20,7 +23,7 @@ const ItemPicCarousel: React.FC = () => {
                 <motion.div
                     className={classes.inner}
                     drag="x"
-                    dragConstraints={{ right: 0, left: -260 }}
+                    dragConstraints={{ right: 0, left: -width }}
                 >
                     {pictures.map((pic) => (
                         <motion.div className={classes.pic} key={Math.random()} drag="x">

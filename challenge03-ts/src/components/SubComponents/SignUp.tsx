@@ -7,12 +7,16 @@ import LoginAuthenticationBtns from '../SubComponents/LoginAuthenticationBtns';
 import { Mail, Lock } from 'react-feather';
 import classes from '../../styleModules/SignUp.module.css';
 
-const SignUp: React.FC = (props) => {
+interface ChildProps {
+    link: () => void;
+}
+
+const SignUp: React.FC<ChildProps> = ({link}) => {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const navigate = useNavigate();
 
-    const [createUserWithEmailAndPassword, user, loading, error] =
+    const [createUserWithEmailAndPassword, loading] =
     useCreateUserWithEmailAndPassword(auth);
 
     const signUpHandler = async (e: FormEvent) => {
@@ -21,7 +25,6 @@ const SignUp: React.FC = (props) => {
             await createUserWithEmailAndPassword(email, password);
             navigate('/home');
         } catch (err) {
-            // Trate o erro aqui ou exiba alguma mensagem de erro ao usuário.
             console.error("Erro ao criar conta:", err);
         }
     }
@@ -51,7 +54,7 @@ const SignUp: React.FC = (props) => {
                 </div>
                 <button className={classes.signBtn} onClick={signUpHandler}>Sign Up</button>
                     <LoginAuthenticationBtns/>
-                <p className={classes.p}>Do you have an account? <span onClick={props.link} className={classes.span}>Sign In here</span></p>
+                <p className={classes.p}>Do you have an account? <span onClick={link} className={classes.span}>Sign In here</span></p>
             </form>
         </div>
     )

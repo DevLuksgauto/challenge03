@@ -1,6 +1,4 @@
 import foto1 from '../../assets/luks1.png';
-import foto2 from '../../assets/luks2.png';
-import foto3 from '../../assets/luks3.png';
 import rating1 from '../../assets/Rating1.png';
 import rating2 from '../../assets/Rating2.png';
 import rating3 from '../../assets/Rating3.png';
@@ -9,7 +7,16 @@ import rating5 from '../../assets/Rating5.png';
 
 import classes from '../../styleModules/Reviews.module.css';
 
-function RatingComponent(props) {
+interface ReviewsProps {
+  name: string;
+  rating: number;
+  description: string;
+}
+interface RatingComponentProps {
+  rating: number;
+}
+
+function RatingComponent(props: RatingComponentProps) {
   switch (props.rating) {
     case 5:
       return <img src={rating5} alt="5 stars" />;
@@ -26,7 +33,7 @@ function RatingComponent(props) {
   }
 }
 
-const Reviews = (props) => {
+const Reviews: React.FC<ReviewsProps> = (props) => {
   return (
     <div className={classes.container}>
       <div className={classes.UserPicContainer}>

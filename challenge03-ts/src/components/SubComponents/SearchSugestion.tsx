@@ -3,13 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import classes from '../../styleModules/SearchSugestion.module.css';
 
 interface Product {
-  id: number;
-  name: string;
-  // Adicione outros campos relevantes do produto aqui, se houver.
+id: number;
+name: string;
 }
 
 interface SearchSuggestionProps {
-  suggestions: Product[];
+suggestions: Product[];
 }
 
 const SearchSugestion: React.FC<SearchSuggestionProps> = ({ suggestions }) => {

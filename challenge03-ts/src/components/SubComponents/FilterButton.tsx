@@ -40,7 +40,6 @@ const FilterButton: React.FC<FilterButtonProps> = ({ allData, onFilter }) => {
   };
 
   useEffect(() => {
-    // Lógica para ordenar os dados com base em 'sortBy'
     const sortData = (data: Item[]) => {
       switch (sortBy) {
         case 'popularity':

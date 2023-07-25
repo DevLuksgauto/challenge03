@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../services/firebaseConfig';
 import { useNavigate } from 'react-router-dom';
+import { AppDispatch } from '../action/types'
 
 import LogoutPopUp from './SubComponents/LogoutPopUp';
 import Loading from './SubComponents/Loading';
@@ -65,8 +66,7 @@ const FirstPage: React.FC = () => {
     navigate('/');
   };
 
-  const dispatch = useDispatch();
-  // const dispatch = useDispatch<Dispatch<DataActionTypes>>()
+  const dispatch = useDispatch<AppDispatch>();
   const data = useSelector((state: RootState) => state.reducer.data);
   useEffect(() => {
     const fetchDataAndSetWidth = async () => {
@@ -89,9 +89,9 @@ const FirstPage: React.FC = () => {
         <div>
           <header className={classes.header}>
             <button onClick={showMenuHandler} className={classes.btnNoStyle}><AlignLeft/></button>
-            <p><img src={greenIcon}/> Audio</p>
+            <p><img src={greenIcon} alt='Logo'/> Audio</p>
             <button onClick={userLogoutHandler} className={classes.btnNoStyle}>
-              <img className={classes.userPhoto} src={userPhoto || userUnknow} alt="UserPhoto" referrerPolicy='no-refferrer'/>
+              <img className={classes.userPhoto} src={userPhoto || userUnknow} alt="UserPhoto" referrerPolicy='no-referrer'/>
             </button>
           </header>
           {logout ? <LogoutPopUp handleLogout={logoutHandler} /> : <p></p>}

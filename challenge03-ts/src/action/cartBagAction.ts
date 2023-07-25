@@ -1,5 +1,4 @@
-// Importe os tipos necessários, se aplicável
-// import { SomeType } from 'some-library';
+import { AnyAction } from 'redux';
 
 interface CartItem {
   id: number;
